@@ -1,0 +1,1063 @@
+@font-face { font-family: Magic; src: url("font/magicKnightTactics/MAGIC.TTF"); }
+@font-face { font-family: Beleren; src: url("font/typeface-beleren-bold-master/Beleren2016-Bold.ttf"); }
+
+* {
+  box-sizing: border-box;
+  text-align: center;
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+  font-family: Beleren, sans-serif;
+}
+
+.loader-container {
+  height: 100%;
+  width: 100%;
+  background-image: url("assets/loadingScreen.jpg");
+  background-size: cover;
+}
+
+.loader-container img {
+  position: absolute;
+  bottom: 2%;
+  left: 37%;
+  height: 10%;
+  width: 7%;
+}
+
+/* loading transition test */
+.transition-1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: 1.5s ease-out;
+}
+
+.transition-1.is-active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* loading transition test  end */
+.loader-container h1 {
+  padding-top: 2%;
+  font-size: 2.5rem;
+  color: rgb(235, 215, 215);
+}
+
+.loader-container h2 {
+  color: rgb(235, 215, 215);
+  bottom: 2%;
+  left: 2%;
+  position: absolute;
+  font-size: 2rem;
+  font-family: Magic, sans-serif;
+}
+
+.main-container {
+  height: 100%;
+  width: 100%;
+  background-image: url("assets/gameBackground.png");
+  background-size: cover;
+}
+
+button {
+  background-color: Transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+.pop {
+  opacity: 1 !important;
+}
+
+.un-pop {
+  opacity: 0.5;
+}
+
+/* Game Mechanics CSS */
+.game-mechanics-sec {
+  background-image: url("assets/gameMechanicsBG.png");
+  background-size: cover;
+  overflow-x: hidden !important;
+}
+
+.game-mechanics-sec span {
+  color: rgb(247, 196, 196);
+}
+
+.game-mechanics-sec .important {
+  color: rgb(248, 66, 66);
+}
+
+.game-name {
+  position: absolute;
+  top: 0%;
+  left: 5%;
+  height: 45%;
+  width: 25%;
+}
+
+#game-mechanics-container {
+  height: 100%;
+  width: 100%;
+}
+
+.playButton {
+  position: fixed;
+  right: 2%;
+  bottom: 2%;
+  height: 12%;
+  width: 20%;
+  opacity: 0.8;
+}
+
+.playButton:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+#game-mechanics-container {
+  color: rgb(248, 245, 245);
+}
+
+#game-mechanics-container ul {
+  padding: 15% 6% 5% 6%;
+}
+
+#game-mechanics-container li {
+  font-size: 12px;
+  text-align: left;
+  line-height: 17px;
+}
+
+/* Ready Button CSS */
+  .readyButton img {
+    position: absolute;
+    height: 10% !important;
+    width: 10% !important;
+    cursor: pointer;
+  }
+
+  .readyButton .player1-ready img {
+    top: 20%;
+    left: 28%;
+    opacity: 0.5;
+    z-index: 100;
+  }
+
+  .readyButton .player1-ready img:hover {
+    opacity: 1;
+  }
+
+  .readyButton .player2-ready img {
+    top: 20%;
+    right: 28%;
+    opacity: 0.5;
+    
+    z-index: 100;
+  }
+
+  .readyButton .player2-ready img:hover {
+    opacity: 1;
+  }
+
+/* Timer CSS */
+.timer img {
+  position: fixed;
+  top: 5.6%;
+  right: 42.5%;
+  height: 22%;
+  width: 15%;
+}
+
+.timer span {
+  position: fixed;
+  top: 11.8%;
+  left: 47.2%;
+  font-size: 30px;
+  color: rgb(219, 170, 170);
+}
+
+/* Card Deck Counter CSS */
+
+#card-deck-count {
+  position: fixed;
+  bottom: 2%;
+  left: 48.5%;
+  color: rgb(235, 205, 205);
+}
+
+#card-deck {
+  position: fixed;
+  top: 10%;
+  left: 21%;
+}
+
+#card-deck img {
+  position: fixed;
+  cursor: pointer;
+  bottom: 8%;
+  left: 44.6%;
+  height: 23%;
+  width: 10%;
+}
+
+/* Card Description CSS */
+.card-description-box h2 { 
+  color: rgb(192, 154, 59);
+  font-size: 70%;
+  margin-bottom: 2%;
+}
+
+.card-description-box p { 
+  color: rgb(185, 153, 153);
+  font-size: 50%;
+}
+
+.player1-card-info {
+  position: fixed;
+  left: 26.3%;
+  bottom: 38%;
+  z-index: 100;
+  height: 10%;
+  width: 10%;
+}
+
+.player1-card-info-bg {
+  position: fixed !important;
+  height: 22% !important;
+  width: 19% !important;
+  left: 22% !important;
+  top: 48% !important;
+  opacity: 0.7 !important;
+}
+
+.player2-card-info {
+  position: fixed;
+  right: 26%;
+  bottom: 38%;
+  z-index: 100;
+  height: 10%;
+  width: 10%;
+}
+
+.player2-card-info-bg {
+  position: fixed !important;
+  height: 22% !important;
+  width: 19% !important;
+  right: 21.3% !important;
+  top: 48% !important;
+  opacity: 0.7 !important;
+}
+
+.card-description-box .player-action {
+  width: 15%;
+  color: #c59494;
+}
+
+.card-description-box span {
+  text-align: center;
+  position: fixed;
+  top: 45%;
+  line-height: 10px;
+  right: 42.6%;
+  font-size: 7px;
+  color: rgb(240, 219, 219);
+  z-index: 100;
+}
+
+.card-description-box img{
+  position: fixed;
+  right: 37.5%;
+  top: 27%;
+  height: 42%;
+  width: 25%;
+  z-index: 10;
+}
+
+/* Player Winner CSS */
+
+.player1-victory {
+  position: fixed;
+  top: 32%;
+  left: 23.5%;
+  height: 15%;
+  width: 15%;
+}
+
+.player1-defeat {
+  position: fixed;
+  top: 32%;
+  left: 23.5%;
+  height: 15%;
+  width: 15%;
+}
+
+.player2-victory {
+  position: fixed;
+  top: 32%;
+  right: 23.5%;
+  height: 15%;
+  width: 15%;
+}
+
+.player2-defeat {
+  position: fixed;
+  top: 32%;
+  right: 23.5%;
+  height: 15%;
+  width: 15%;
+}
+
+/* Player Avatar CSS */
+
+main div.player img {
+  height: 30%;
+  width: 20%;
+}
+
+main div#player-one .avatar {
+  position: fixed;
+  top: 21%;
+  left: 5%;
+  border-radius: 25px;
+}
+
+main div#player-two .avatar {
+  position: fixed;
+  top: 21%;
+  right: 5%;
+  width: 18%;
+  border-radius: 25px;
+}
+
+/* Player Skills CSS */
+
+main div.player-skill-container {
+  position: absolute;
+  bottom: 25%;
+  display: flex;
+  flex-wrap: wrap;
+  height: 25%;
+  width: 25%;
+}
+
+.player-skill-container img {
+  height: 23% !important;
+  width: 16% !important;
+}
+
+main #player-one div.player-one-skills {
+  left: -5%;
+}
+
+main #player-two div.player-two-skills {
+  right: 0%;
+}
+
+/* Player 1 skill/command button position*/
+
+main div .p1-skill-attack {
+  position: absolute !important;
+  top: 20% !important;
+  left: 53% !important;
+  opacity: 0.6;
+}
+
+main div .p1-skill-attack:hover { 
+  opacity: 1;
+}
+
+
+main div .p1-skill-magic {
+  position: absolute !important;
+  top: 20% !important;
+  left: 85% !important;
+  opacity: 0.6;
+}
+
+main div .p1-skill-magic:hover {
+  opacity: 1;
+}
+
+main div .p1-skill-defend {
+  position: absolute !important;
+  top: 55% !important;
+  left: 53% !important;
+  opacity: 0.6;
+}
+
+main div .p1-skill-defend:hover {
+  opacity: 1;
+}
+
+main div .p1-skill-magic-spell {
+  position: absolute !important;
+  top: 55% !important;
+  left: 85% !important;
+  opacity: 0.6;
+}
+
+main div .p1-skill-magic-spell:hover {
+  opacity: 1;
+}
+
+/* Player Button settings */
+.player-one-skills button {
+  height: 0%;
+  width: 0%;
+}
+.player-two-skills button {
+  height: 0%;
+  width: 0%;
+}
+
+/* Player 2 skill/command button position*/
+
+main div .p2-skill-attack {
+  position: absolute !important;
+  top: 20% !important;
+  right: 63% !important;
+  opacity: 0.6;
+}
+
+main div .p2-skill-attack:hover {
+  opacity: 1;
+}
+
+main div .p2-skill-magic {
+  position: absolute !important;
+  top: 20% !important;
+  right: 30% !important;
+  opacity: 0.6;
+}
+
+main div .p2-skill-magic:hover {
+  opacity: 1;
+}
+
+main div .p2-skill-defend {
+  position: absolute !important;
+  top: 55% !important;
+  right: 63% !important;
+  opacity: 0.6;
+}
+
+main div .p2-skill-defend:hover {
+  opacity: 1;
+}
+
+main div .p2-skill-magic-spell {
+  position: absolute !important;
+  top: 55% !important;
+  right: 30% !important;
+  opacity: 0.6;
+}
+
+main div .p2-skill-magic-spell:hover {
+  opacity: 1;
+}
+
+/* Player Hand CSS */
+main div .player1-hand button {
+  height: 0%;
+  width: 0%;
+}
+
+main div .player2-hand button {
+  height: 0%;
+  width: 0%;
+}
+
+main div .player1-hand {
+  height: 20%;
+}
+
+main div.player-hand-container {
+  position: fixed;
+  bottom: 0%;
+  height: 29%;
+  width: 40%;
+}
+
+main div.player1-hand {
+  background-image: url("assets/cardContainerLeft.png");
+  background-size: cover;
+  left: 1%;
+}
+
+main div.player2-hand {
+  background-image: url("assets/cardContainerRight.png");
+  background-size: cover;
+  right: 1%;
+}
+
+main div.player-hand-container .card-sleeve { 
+  top: 15% !important;
+  left: 15% !important;
+}
+
+main div.player-hand-container .card-sleeve img {
+  height: 100%;
+  width: 100%;
+}
+
+main div .player-name {
+  position: fixed;
+  z-index: 20;
+  font-size: 12px;
+  bottom: 9px;
+  color: white;
+}
+
+main div.player1-hand .player-name {
+  left: 5%;
+}
+
+main div.player2-hand .player-name {
+  right: 5%;
+}
+
+/* Player Card buttons CSS */
+
+main div.player1-hand .flip-card-front button {
+  position: fixed !important;
+  bottom: 0%;
+  left: 0%;
+  height: 70%;
+  width: 70%;
+}
+
+main div.player2-hand .flip-card-front button {
+  position: fixed !important;
+  bottom: 0%;
+  left: 0%;
+  height: 70%;
+  width: 70%;
+}
+
+/* Player One Hand Sleeves */
+
+main div.player1-hand .sleeve-one {
+  position: fixed;
+  bottom: 0%;
+  left: 0%;
+  z-index: 10;
+}
+
+main div.player1-hand .sleeve-two {
+  position: fixed;
+  bottom: 0%;
+  left: 0%;
+  z-index: 10;
+}
+
+main div.player1-hand .sleeve-three {
+  position: fixed;
+  bottom:0%;
+  left: 0%;
+  z-index: 10;
+}
+
+main div.player1-hand .sleeve-four {
+  position: fixed;
+  bottom: 0%;
+  left: 0%;
+  z-index: 10;
+}
+
+/* Player Two Hand Sleeves */
+
+main div.player2-hand .sleeve-one {
+  position: fixed !important;
+  bottom: 0%;
+  left: 0%;
+  z-index: 10;
+}
+
+main div.player2-hand .sleeve-two {
+  position: fixed;
+  bottom: 0%;
+  left: 0%;
+  z-index: 10;
+}
+
+main div.player2-hand .sleeve-three {
+  position: fixed;
+  bottom: 0%;
+  left: 0%;
+  z-index: 10;
+}
+
+main div.player2-hand .sleeve-four {
+  position: fixed;
+  bottom: 0%;
+  left: 0%;
+  z-index: 10;
+}
+
+/* Health Bar CSS */
+
+#player-one-health.hpBorder {
+  position: fixed;
+  top: 12%;
+  left: 5%;
+}
+
+#player-two-health.hpBorder {
+  position: fixed;
+  top: 12%;
+  right: 5%;
+}
+
+.healthLabel {
+  position: fixed;
+  color: rgb(248, 221, 221);
+  top: 8%;
+}
+
+.player-one-healthLabel {
+  left: 7%;
+}
+
+.player-two-healthLabel {
+  right: 6.4%;
+}
+
+.hpBorder {
+  width: 35%;
+  height: 20px;
+  border: 3px solid black;
+  border-radius: 10px;
+}
+
+#player1Hp {
+  width: 100%;
+  height: 20px;
+  background: linear-gradient(180deg,rgb(18, 107, 45), rgb(1, 27, 3));
+  border-radius: 5px;
+  color: rgb(238, 207, 207);
+}
+
+#player2Hp {
+  width: 100%;
+  height: 20px;
+  background: linear-gradient(180deg,rgb(18, 107, 45), rgb(1, 27, 3));
+  border-radius: 5px;
+  color: rgb(238, 207, 207);
+}
+
+.hpBar-p1 {
+  text-align: left;
+  padding-left: 10px;
+}
+
+.hpBar-p2 {
+  text-align: right;
+  padding-right: 10px;
+}
+
+/* flip card CSS */
+
+.flip-card-settings {
+  position: fixed;
+  z-index: 100;
+  background-color: transparent;
+  height: 13%;
+  width: 5%;
+  opacity: 0.7;
+}
+
+.flip-card-settings:hover {
+  opacity: 1;
+}
+.player1-flip-card-1 {
+  bottom: 12%;
+  left: 5% !important;
+}
+
+.player1-flip-card-2 {
+  bottom: 12%;
+  left: 14% !important;
+}
+
+.player1-flip-card-3 {
+  bottom: 12%;
+  left: 23% !important;
+}
+
+.player1-flip-card-4 {
+  bottom: 12%;
+  left: 32% !important;
+}
+
+.player2-flip-card-1 {
+  bottom: 12%;
+  left: 63% !important;
+}
+
+.player2-flip-card-2 {
+  bottom: 12%;
+  left: 72% !important;
+}
+
+.player2-flip-card-3 {
+  bottom: 12%;
+  left: 81% !important;
+}
+
+.player2-flip-card-4 {
+  bottom: 12%;
+  left: 90% !important;
+}
+
+.flip-my-card {
+  transform: rotateY(180deg);
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  border-radius: 25px;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  z-index: 1000;
+}
+
+.flip-card-front {
+  background-color: #bbb;
+  color: black;
+}
+
+.flip-card-back {
+  background-color: rgb(88, 23, 23);
+  color: white;
+  transform: rotateY(180deg);
+  z-index: 1000 !important;
+}
+
+
+
+/* Animation CSS */
+@keyframes levitate {
+  0% { transform: translate(0px, 0px) rotate(0deg); }
+  50% { transform: translate(0px, 10px) rotate(0deg); }
+  100% { transform: translate(0px, 0px) rotate(0deg); }
+}
+
+.avatar-levitate {
+  animation: levitate .8s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+.avatar-shake {
+  animation: shake 0.5s;
+  animation-iteration-count: infinite;
+}
+
+/* Media Query */
+
+@media screen and (min-width: 668px) {
+  main div .player-name {
+    bottom: 5px;
+  }
+  .timer span {
+    top: 11.8%;
+    left: 48%;
+  }
+    #card-deck img {
+    width: 10%;
+    left: 45.2%;
+  }
+  .loader-container img {
+    left: 34%;
+  }
+}
+
+@media screen and (min-width: 741px) {
+  .timer span {
+    left: 48.2%;
+  }
+  .card-description-box span {
+    font-size: 10px;
+  }
+  .loader-container img {
+    left: 30%;
+  }
+}
+
+@media screen and (min-width: 914px) {
+  .playButton {
+    height: 10%;
+    width: 15%;
+  }
+  main div .player-name {
+    bottom: 3px;
+  }
+  .timer span {
+    left: 48.4%;
+  }
+}
+
+@media screen and (min-width: 1023px) {
+  .loader-container h2 {
+    font-size: 2.5rem;
+    bottom: 3%;
+    left: 3%;
+  }
+  .loader-container img {
+    left: 33%;
+  }
+  .playButton {
+    height: 8%;
+    width: 15%;
+  }
+  main div .player-name {
+    bottom: 20px;
+    font-size: 20px;
+  }
+  main div.player1-hand .player-name {
+      left: 7%;
+  }
+  main div.player2-hand .player-name {
+    right: 7%;
+  }
+  main div.player1-hand {
+    left: 2%;
+  }
+  main div.player2-hand {
+    right: 2%;
+  }
+  main div.player-hand-container {
+    height: 29%;
+    width: 37%;
+    bottom:0%;
+  }
+  #card-deck-count {
+    font-size: 2rem;
+  }
+  .timer span {
+    font-size: 3rem;
+    top: 12%;
+    left: 47.5%;
+  }
+  .hpBorder {
+    width: 15%;
+  }
+  .player-one-healthLabel {
+    font-size: 24px;;
+  }
+  .player-two-healthLabel {
+    font-size: 24px;;
+  }
+  .avatar {
+    width: 24% !important;
+    cursor: pointer;
+  }
+  main div#player-one .avatar {
+    left: 4%;
+  }
+  main div#player-two .avatar {
+    right: 4%;
+  }
+  #game-mechanics-container h1 {
+    padding-top: 50px;
+    font-size: 60px;
+    line-height: 10px;
+  }
+  #game-mechanics-container h2 {
+    padding-top: 30px;
+    font-size: 42px;
+  }
+  #game-mechanics-container li {
+    font-size: 20px;
+    line-height: 30px;
+  }
+  .hpBorder {
+    width: 35%;
+    height: 30px;
+  }
+  #player1Hp {
+    width: 100%;
+    height: 20px;
+    height: 30px;
+    font-size: 24px;
+  }
+  
+  #player2Hp {
+    width: 100%;
+    height: 20px;
+    height: 30px;
+    font-size: 24px;
+  }
+  .card-description-box span {
+    line-height: 15px;
+    font-size: 14px;
+  }
+  .card-description-box h2 { 
+    font-size: 100%;
+  }
+  .card-description-box p { 
+    font-size: 80%;
+  }
+}
+
+@media screen and (min-width: 1179px) {
+  .loader-container h2 {
+    font-size: 3rem;
+    bottom: 4%;
+  }
+  .loader-container img {
+    left: 34%;
+    bottom: 3%;
+  }
+  main div .player-name {
+    bottom: 28px;
+    font-size: 20px;
+  }
+  main div.player1-hand .player-name {
+    left: 6%;
+  }
+  main div.player2-hand .player-name {
+    right: 4%;
+  }
+  #card-deck-count {
+    font-size: 1.5rem;
+  }
+  .timer span {
+    font-size: 3rem;
+    left: 47.5%;
+  }
+  .card-description-box span {
+    line-height: 18px;
+    font-size: 14px;
+  }
+  main div#player-two .avatar {
+    width: 21% !important;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .loader-container img {
+    left: 32%;
+  }
+  #card-deck-count {
+    font-size: 2.5rem;
+  }
+  .timer span {
+    font-size: 3.5rem;
+    left: 47.3%;
+  }
+  .card-description-box span {
+    line-height: 16px;
+    font-size: 12px;
+  }
+  #player-two-health.hpBorder {
+    position: fixed;
+    top: 12%;
+  }
+  .avatar {
+    width: 22% !important;
+  }
+  .card-description-box span {
+    line-height: 18px;
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 1480px) {
+  .loader-container img {
+    left: 28%;
+  }
+  .card-description-box h2 { 
+    font-size: 100%;
+  }
+  .card-description-box p { 
+    font-size: 80%;
+  }
+  #card-deck-count {
+    font-size: 3.5rem;
+    bottom: 0%;
+  }
+  .timer span {
+    font-size: 5.5rem;
+    top: 11%;
+  }
+  #card-deck {
+      left: 23%;
+  }
+  .card-description-box h2 { 
+    font-size: 120%;
+  }
+  .card-description-box p { 
+    font-size: 100%;
+  }
+}
+
+@media screen and (min-width: 1640px) {
+  .loader-container img {
+    left: 26%;
+  }
+  .card-description-box span {
+    font-size: 16px;
+  }
+}
+
+@media screen and (min-width: 1740px) {
+  .loader-container h2 {
+    font-size: 3.5rem;
+  }
+  .loader-container img {
+    left: 26%;
+  }
+  .card-description-box span {
+    line-height: 19px;
+    font-size: 16px;
+  }
+}
+
+@media screen and (min-width: 1820px) {
+  .card-description-box span {
+    line-height: 23px;
+    font-size: 20px;
+  }
+}

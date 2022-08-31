@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Magic Knight Tactics</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="icon" type="image/x-icon" href="assets/favicon.png">
+</head>
+<body>
+  <!-- ===== Loading Screen Container Start ===== -->
+  <div class="loader-container transition transition-1 is-active">
+    <div class="loader">
+      <img src="assets/loadingIcon.gif" alt="">
+      <h2>Loading Resources</h2>
+    </div>
+  </div>
+    <!-- ============== Game Mechanics Section ==============-->
+    <section class="game-mechanics-sec">
+      <div id="game-mechanics-container">
+        <img class="game-name" src="assets/gameName.png"/>
+        <!-- ============== Game Mechanics List ==============-->
+        <div>
+          <ul>
+            <li>1v1 Strategy turn based Card Game</li>
+            <li>
+              4 Types of cards(<span>normal, magic, defense and magic spell cards</span>)<br>
+              - Attack (<span>uses normal attack card</span>)<br>
+              - Magic attack (<span>uses magic attack card</span>)<br>
+              - Defense (<span>variety of defensive card stance to self</span>)<br>
+              - Magic Spell (<span>variety of useful spells for player advantage and enemy player disadvantage</span>)
+            </li>
+            <li>
+              53 unique cards with corresponding tier list damage, defensive effects and magical spell effects<br>
+            </li>
+            <li>
+              Attack and Magic Cards<br>
+              - tier1 (<span>Green card  does 2 damage</span>)<br>
+              - tier2 (<span>Yellow card does 4 damage</span>)<br>
+              - tier3 (<span>Blue card does 6 damage</span>)<br>
+              - tier4 (<span>Red card does 8 damage</span>)<br>
+            </li>
+            <li>
+              Defensive Cards (<span>Defense Card only affects the next Enemy turn, Auto dispells self buff on your next turn</span>)<br>
+              - Reflect Normal (<span>Reflect Enemy Normal Attack</span>)<br>
+              - Reflect Magic Damage (<span>Reflect Enemy Magic Attack</span>)<br>
+              - Dodge (<span>Dodges Enemy Normal Attack</span>)<br>
+              - Negate Magic Attack (<span>Dodge Enemy Magic attack</span>)<br>
+              - Shield (<span>Half Enemy Normal attack</span>)<br>
+              - Magic Shield (<span>Half Enemy Magic attack</span>)<br>
+            </li>
+            <li>
+              Magic Spell Cards<br>
+              - Eliminate (<span>Replace All Enemy Cards</span>)<br>
+              - Manipulate (<span>Replace own 4 Cards</span>)<br>
+              - Heals 12 hp <br>
+              - Third Eye (<span>Reveal 1 Random Enemy Card</span>)<br>
+              - Draw (<span>Draw 2 Cards, Note you must choose 1 card to discard on hand</span>)<br>
+            </li>
+            <li>
+              Each player will have 4 initial cards and 100hp<br>
+              - 4 max cards per player<br>
+              - a player must discard if card on hand will be more than 4
+            </li>
+            <li>Player can only choose one command each turn</li>
+            <li>Player has only 30 seconds to perform a move or else that player auto skips the round</li>
+            <li>Auto removes card after use</li>
+            <li>Random first player turn(<span class="important">Not Implemented Yet</span>)</li>
+            <li>Reset Deck if Deck count goes to 0</li>
+            <li>First player to lose ALL HP loses the game</li>
+          </ul>
+          <img class="playButton" src="assets/playButton.png" alt="Play Button">
+        </div>
+      </div>
+    </section>
+  <main class="main-container hidden">
+    <!-- ============== Ready Button Section ==============-->
+    <section class="readyButton hidden">
+      <div class="player1-ready">
+        <img class="readyP1" src="assets/readyPlayer1.png"/>
+      </div>
+      <div class="player2-ready">
+        <img class="readyP2" src="assets/readyPlayer2.png"/>
+      </div>
+    </section>
+    <!-- ============== Timer Section ==============-->
+    <section class="timer hidden">
+      <div>
+        <img src="assets/timerBackground.png" />
+        <span class="timerCount">30</span>
+      </div>
+    </section>
+    <!-- ============== Deck Section ==============-->
+    <section id="card-deck" class="hidden">
+      <!-- ============== Deck ==============-->
+      <div>
+        <img src="assets/backCardBackground.png" alt="Card Deck"/>
+        <span id="card-deck-count"></span>
+      </div>
+    </section>
+    <section class="player-win-lose-sec">
+      <div class="player1-winL-lose-ui">
+        <img class="player1-victory hidden" src="assets/victory.png" />
+        <img class="player1-defeat hidden" src="assets/defeat.png" />
+      </div>
+      <div class="player2-win-lose-ui">
+        <img class="player2-victory hidden" src="assets/victory.png" />
+        <img class="player2-defeat hidden" src="assets/defeat.png" />
+      </div>
+    </section>
+    <!-- ============== Description Section ==============-->
+    <section class="card-description-box hidden">
+      <div class="player1-card-info hidden">
+          <h2></h2>
+          <p></p>
+      </div>
+      <img class="player1-card-info-bg hidden" src="assets/hoverCardInfo.png"/>
+      <div class="player2-card-info hidden">
+        <h2></h2>
+        <p></p>
+      </div>
+        <img class="player2-card-info-bg hidden" src="assets/hoverCardInfo.png"/>
+      <div class="player-action-box">
+        <span class="player-action"></span>
+        <img src="assets/descriptionBox.png"/>
+      </div>
+    </section>
+    <!-- ============== Player Section ==============-->
+    <section class="players hidden">
+      <!-- ============== Player One ==============-->
+      <div id="player-one" class="player">
+        <!-- ============== Player One HP ==============-->
+        <span class="player-one-healthLabel healthLabel">HP</span>
+        <div id="player-one-health" class="hpBorder">
+          <div id="player1Hp" class="hpBar hpBar-p1">100</div>
+        </div>
+        <!-- ============== Player One Avatar ==============-->
+        <img class="player1-avatar avatar" src="assets/player1.png" alt="Player One"/>
+        <div class="player-one-skills player-skill-container">
+          <button class="player1-attack-button" type="button">
+            <img class="p1-skill-attack" src="assets/playerCommands/attack.png" alt="Attack"/>
+          </button>
+          <button class="player1-magic-button" type="button">
+            <img class="p1-skill-magic" src="assets/playerCommands/magic.png" alt="Magic Attack"/>
+          </button>
+          <button class="player1-defend-button" type="button">
+            <img class="p1-skill-defend" src="assets/playerCommands/Defend.png" alt="Defend"/>
+          </button>
+          <button class="player1-magic-spell-button" type="button">
+            <img class="p1-skill-magic-spell" src="assets/playerCommands/magicBarrier.png" alt="Magic Barrier"/>
+          </button>
+        </div>
+        <!-- ============== Player One Cards==============-->
+        <div class="player1-hand player-hand-container">
+        <!-- ============== Player One First Card ==============-->
+          <div class="player1-flip-card-1 flip-card-settings">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <button type="button" class="card-sleeve"><img class="sleeve-one" src="assets/backCardBackground.png" alt="Card Sleeve"></button>
+              </div>
+              <div class="flip-card-back">
+                <button type="button" class="card-sleeve"><img id="player1-card-1" class="sleeve-one" src="assets/tierCardList/tier4.png" alt="Card Sleeve"></button>
+              </div>
+            </div>
+          </div>
+          <!-- ============== Player One Second Card ==============-->
+          <div class="player1-flip-card-2 flip-card-settings">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <button type="button" class="card-sleeve"><img class="sleeve-two" src="assets/backCardBackground.png" alt="Card Sleeve"></button>
+              </div>
+              <div class="flip-card-back">
+                <button type="button" class="card-sleeve"><img id="player1-card-2" class="sleeve-one" src="assets/tierCardList/tier4.png" alt="Card Sleeve"></button>
+              </div>
+            </div>
+          </div>
+          <!-- ============== Player One Third Card ==============-->
+          <div class="player1-flip-card-3 flip-card-settings">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <button type="button" class="card-sleeve"><img class="sleeve-three" src="assets/backCardBackground.png" alt="Card Sleeve"></button>
+              </div>
+              <div class="flip-card-back">
+                <button type="button" class="card-sleeve"><img id="player1-card-3" class="sleeve-one" src="assets/tierCardList/tier4.png" alt="Card Sleeve"></button>
+              </div>
+            </div>
+          </div>
+          <!-- ============== Player One Fourth Card ==============-->
+          <div class="player1-flip-card-4 flip-card-settings">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <button type="button" class="card-sleeve"><img class="sleeve-four" src="assets/backCardBackground.png" alt="Card Sleeve"></button>
+              </div>
+              <div class="flip-card-back">
+                <button type="button" class="card-sleeve"><img id="player1-card-4" class="sleeve-one" src="assets/tierCardList/tier4.png" alt="Card Sleeve"></button>
+              </div>
+            </div>
+          </div>
+          <span class="player-name">Player 1</span>
+        </div>
+      </div>
+      <!-- ============== Player Two ==============-->
+      <div id="player-two" class="player">
+        <!-- ============== Player Two HP ==============-->
+        <span class="player-two-healthLabel healthLabel">HP</span>
+        <div id="player-two-health" class="hpBorder">
+          <div id="player2Hp" class="hpBar hpBar-p2">100</div>
+        </div>
+        <!-- ============== Player Two Avatar ==============-->
+        <img class="player2-avatar avatar" src="assets/player2.png" alt="Player Two"/>
+        <div class="player-two-skills player-skill-container">
+          <button class="player2-attack-button" type="button">
+            <img class="p2-skill-attack" src="assets/playerCommands/attack.png" alt="Attack"/>
+          </button>
+          <button class="player2-magic-button" type="button">
+            <img class="p2-skill-magic" src="assets/playerCommands/magic.png" alt="Magic Attack"/>
+          </button>
+          <button class="player2-defend-button" type="button">
+            <img class="p2-skill-defend" src="assets/playerCommands/Defend.png" alt="Defend"/>
+          </button>
+          <button class="player2-magic-spell-button" type="button">
+            <img class="p2-skill-magic-spell" src="assets/playerCommands/magicBarrier.png" alt="Magic Barrier"/>
+          </button>
+        </div>
+        <!-- ============== Player Two Cards==============-->
+        <div class="player2-hand player-hand-container">
+        <!-- ============== Player Two First Card ==============-->
+        <div class="player2-flip-card-1 flip-card-settings">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <button type="button" class="card-sleeve"><img class="sleeve-one" src="assets/backCardBackground.png" alt="Card Sleeve"></button>
+            </div>
+            <div class="flip-card-back">
+              <button type="button" class="card-sleeve"><img id="player2-card-1" class="sleeve-one" src="assets/tierCardList/tier1.png" alt="Card Sleeve"></button>
+            </div>
+          </div>
+        </div>
+        <!-- ============== Player Two Second Card ==============-->
+        <div class="player2-flip-card-2 flip-card-settings">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <button type="button" class="card-sleeve"><img class="sleeve-two" src="assets/backCardBackground.png" alt="Card Sleeve"></button>
+            </div>
+            <div class="flip-card-back">
+              <button type="button" class="card-sleeve"><img id="player2-card-2" class="sleeve-one" src="assets/tierCardList/tier1.png" alt="Card Sleeve"></button>
+            </div>
+          </div>
+        </div>
+        <!-- ============== Player Two three Card ==============-->
+        <div class="player2-flip-card-3 flip-card-settings">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <button type="button" class="card-sleeve"><img class="sleeve-three" src="assets/backCardBackground.png" alt="Card Sleeve"></button>
+            </div>
+            <div class="flip-card-back">
+              <button type="button" class="card-sleeve"><img id="player2-card-3" class="sleeve-one" src="assets/tierCardList/tier1.png" alt="Card Sleeve"></button>
+            </div>
+          </div>
+        </div>
+        <!-- ============== Player Two Four Card ==============-->
+        <div class="player2-flip-card-4 flip-card-settings">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <button type="button" class="card-sleeve"><img class="sleeve-four" src="assets/backCardBackground.png" alt="Card Sleeve"></button>
+            </div>
+            <div class="flip-card-back">
+              <button type="button" class="card-sleeve"><img id="player2-card-4" class="sleeve-one" src="assets/tierCardList/tier1.png" alt="Card Sleeve"></button>
+            </div>
+          </div>
+        </div>
+          <span class="player-name">Player 2</span>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="./main.js"></script>
+</body>
+</html>
